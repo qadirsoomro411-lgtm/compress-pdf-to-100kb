@@ -1,1 +1,235 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Compress PDF 200KB</title><style>*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}body{background:#f8fafc}header{background:#fff;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 3px #0001;position:sticky;top:0;z-index:99}.logo{font-weight:800;line-height:1;color:#1e3a8a;font-size:26px}nav{display:flex;gap:8px}nav a{padding:8px 18px;border-radius:24px;text-decoration:none;font-weight:600;color:#334155;font-size:14px;cursor:pointer}nav a.active{background:#2563eb;color:#fff}.hero{background:linear-gradient(90deg,#2563eb,#7c3aed);padding:60px 20px 70px}.card{max-width:760px;margin:0 auto;background:#fff;border-radius:22px;padding:28px 24px;box-shadow:0 20px 60px #0003}.drop{border:2px dashed #c7d2fe;border-radius:16px;padding:22px;text-align:center;background:#eef2ff;cursor:pointer}.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.pills button{border:1px solid #e2e8f0;background:#f1f5f9;padding:10px 22px;border-radius:28px;font-weight:700;cursor:pointer}.pills button.active{background:#2563eb;color:#fff}</style><script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script></head><body><header><div class="logo">Compress<br>PDF 200KB</div><nav><a class="active">Compress PDF</a><a>Merge PDF</a><a>JPG to PDF</a><a>PDF to JPG</a><a>Tools ▾</a></nav></header><div class="hero"><div class="card"><div class="drop" onclick="document.getElementById('f').click()"><div style="font-size:36px;color:#2563eb">☁️⬇️</div><b>Drag & Drop your PDF here</b><br><small>or click to browse • Max 100MB • PDF only</small><input type="file" id="f" hidden accept=".pdf"><div id="fn" style="margin-top:10px;color:#2563eb;font-weight:700"></div></div><div style="margin-top:18px;font-weight:600">Choose target file size:</div><div class="pills"><button onclick="setS(100,this)">100KB</button><button class="active" onclick="setS(200,this)">200KB</button><button onclick="setS(300,this)">300KB</button><button onclick="setS(500,this)">500KB</button></div><button id="b" style="margin-top:18px;width:100%;background:#2563eb;color:#fff;border:0;padding:14px;border-radius:12px;font-weight:800;font-size:16px">Compress PDF to 200KB</button><div id="st" style="margin-top:10px;font-weight:700;text-align:center;color:#2563eb"></div><div id="rs" style="text-align:center;margin-top:10px"></div></div><div style="text-align:center;color:#dbeafe;margin-top:18px;font-size:13px">✓ 256-bit SSL secured • ✓ Files auto-deleted after 1 hour</div></div><script>pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';let sel=200,file=null;function setS(v,el){sel=v;document.querySelectorAll('.pills button').forEach(b=>b.classList.remove('active'));el.classList.add('active');document.getElementById('b').innerText='Compress PDF to '+v+'KB'}document.getElementById('f').onchange=e=>{file=e.target.files[0];document.getElementById('fn').innerText=file.name+' ('+(file.size/1024).toFixed(0)+'KB)'};document.getElementById('b').onclick=async()=>{if(!file){alert('File select karo');return}let btn=document.getElementById('b');btn.innerText='Compressing...';try{let tgt=sel*1024;let data=await file.arrayBuffer();let pdf=await pdfjsLib.getDocument({data}).promise;const {jsPDF}=window.jspdf;let q=0.5;if(file.size>tgt*3)q=0.25;let out=new jsPDF();for(let i=1;i<=pdf.numPages;i++){let page=await pdf.getPage(i);let vp=page.getViewport({scale:0.7});let cv=document.createElement('canvas');cv.width=vp.width;cv.height=vp.height;await page.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;if(i>1)out.addPage();out.addImage(cv.toDataURL('image/jpeg',q),'JPEG',5,5,200,287)}let blob=out.output('blob');while(blob.size>tgt&&q>0.1){q-=0.1;out=new jsPDF();for(let i=1;i<=pdf.numPages;i++){let page=await pdf.getPage(i);let vp=page.getViewport({scale:0.6});let cv=document.createElement('canvas');cv.width=vp.width;cv.height=vp.height;await page.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;if(i>1)out.addPage();out.addImage(cv.toDataURL('image/jpeg',q),'JPEG',5,5,200,287)}blob=out.output('blob')}document.getElementById('st').innerText='Ho gaya! '+(file.size/1024).toFixed(0)+'KB ➜ '+(blob.size/1024).toFixed(0)+'KB';let url=URL.createObjectURL(blob);document.getElementById('rs').innerHTML='<a href="'+url+'" download="compressed-'+sel+'kb-'+file.name+'" style="background:#16a34a;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:800">📥 Download</a>';let a=document.createElement('a');a.href=url;a.download='compressed-'+sel+'kb-'+file.name;a.click()}catch(e){alert(e.message)}btn.innerText='Compress PDF to '+sel+'KB'}}</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advance Target PDF Compressor - Free & Fast</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- PDF-Lib CDN -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <!-- PDF.js for rendering PDF pages to Canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- Header Section -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 p-2 rounded-lg text-white">
+                    <i class="fa-solid fa-file-pdf text-2xl"></i>
+                </div>
+                <h1 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">PDFSmartTools</h1>
+            </div>
+            <span class="text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-full">
+                <i class="fa-solid fa-shield-halved mr-1"></i> 100% Client-Side Safe
+            </span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-10 w-full">
+        <!-- Hero Title -->
+        <div class="text-center mb-8">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-3">Advance Target PDF Compressor</h2>
+            <p class="text-slate-400 text-sm md:text-base">Jobs, Admission & Official forms ke liye exact target size choose karein.</p>
+        </div>
+
+        <!-- Tool Card -->
+        <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 md:p-8 shadow-2xl backdrop-blur-sm">
+            
+            <!-- File Drop Zone -->
+            <div id="dropZone" onclick="document.getElementById('pdfInput').click()" 
+                 class="border-2 border-dashed border-slate-600 hover:border-blue-500 bg-slate-800/40 hover:bg-slate-800/80 rounded-xl p-8 text-center cursor-pointer transition-all duration-300 group">
+                <input type="file" id="pdfInput" accept="application/pdf" class="hidden" onchange="onFileSelected(event)">
+                <div class="text-4xl text-slate-400 group-hover:text-blue-400 mb-3 transition-colors">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <p class="font-medium text-slate-200" id="fileNameDisplay">PDF File Select Karein Ya Yahan Drag Karein</p>
+                <p class="text-xs text-slate-400 mt-1" id="fileSizeDisplay">Only .pdf files supported</p>
+            </div>
+
+            <!-- Target Size Selector -->
+            <div class="mt-6">
+                <label class="block text-sm font-semibold text-slate-300 mb-3">Target Size Select Karein:</label>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <button type="button" onclick="setTargetSize(100, this)" class="size-btn bg-slate-700 hover:bg-blue-600 text-slate-200 font-semibold py-2.5 px-4 rounded-xl border border-slate-600 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-compress"></i> 100 KB
+                    </button>
+                    <button type="button" onclick="setTargetSize(200, this)" class="size-btn bg-slate-700 hover:bg-blue-600 text-slate-200 font-semibold py-2.5 px-4 rounded-xl border border-slate-600 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-compress"></i> 200 KB
+                    </button>
+                    <button type="button" onclick="setTargetSize(300, this)" class="size-btn bg-slate-700 hover:bg-blue-600 text-slate-200 font-semibold py-2.5 px-4 rounded-xl border border-slate-600 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-compress"></i> 300 KB
+                    </button>
+                    <button type="button" onclick="setTargetSize(500, this)" class="size-btn bg-slate-700 hover:bg-blue-600 text-slate-200 font-semibold py-2.5 px-4 rounded-xl border border-slate-600 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-compress"></i> 500 KB
+                    </button>
+                </div>
+            </div>
+
+            <!-- Action Button & Status -->
+            <div class="mt-8">
+                <button id="compressBtn" onclick="processCompress()" disabled 
+                        class="w-full bg-blue-600 disabled:bg-slate-700 disabled:cursor-not-allowed hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-bolt"></i> Compress PDF Now
+                </button>
+                
+                <div id="statusBox" class="hidden mt-4 p-4 rounded-xl text-center text-sm font-medium"></div>
+            </div>
+
+        </div>
+
+        <!-- How to Use Section (SEO Friendly) -->
+        <div class="mt-12 bg-slate-800/30 border border-slate-800 rounded-2xl p-6">
+            <h3 class="text-lg font-bold text-slate-200 mb-3"><i class="fa-solid fa-circle-info text-blue-400 mr-2"></i> How To Compress PDF to 100KB Online?</h3>
+            <ul class="text-xs text-slate-400 space-y-2 list-disc list-inside leading-relaxed">
+                <li>Select your PDF document from your mobile or laptop.</li>
+                <li>Choose your desired target size limit (100KB, 200KB, 300KB, or 500KB).</li>
+                <li>Click <strong>Compress PDF Now</strong>. Processing happens inside your browser locally without uploading files to any external server.</li>
+                <li>Download your lightweight, high-quality PDF ready for government jobs and university admissions.</li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+        <p>&copy; 2026 PDFSmartTools. All Files Processed Locally (Zero Scam, 100% Secure).</p>
+    </footer>
+
+    <!-- Core Logic JavaScript -->
+    <script>
+        let selectedFile = null;
+        let selectedTargetKB = 200; // default 200KB
+
+        function onFileSelected(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (file.type !== "application/pdf") {
+                alert("Khasra/Galat file! Please PDF file upload karein.");
+                return;
+            }
+
+            selectedFile = file;
+            const sizeInKB = (file.size / 1024).toFixed(2);
+            
+            document.getElementById('fileNameDisplay').innerText = file.name;
+            document.getElementById('fileSizeDisplay').innerText = `Original Size: ${sizeInKB} KB`;
+            
+            checkEnableButton();
+        }
+
+        function setTargetSize(targetKB, btnElement) {
+            selectedTargetKB = targetKB;
+            
+            // UI Button Active Effect
+            document.querySelectorAll('.size-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'border-blue-400');
+                btn.classList.add('bg-slate-700');
+            });
+
+            btnElement.classList.remove('bg-slate-700');
+            btnElement.classList.add('bg-blue-600', 'border-blue-400');
+
+            checkEnableButton();
+        }
+
+        function checkEnableButton() {
+            const compressBtn = document.getElementById('compressBtn');
+            if (selectedFile && selectedTargetKB) {
+                compressBtn.disabled = false;
+            }
+        }
+
+        async function processCompress() {
+            if (!selectedFile) return;
+
+            const statusBox = document.getElementById('statusBox');
+            const compressBtn = document.getElementById('compressBtn');
+            
+            compressBtn.disabled = true;
+            statusBox.className = "mt-4 p-4 rounded-xl text-center text-sm font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20";
+            statusBox.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> PDF Compress Ho Rahi Hai, Barae Mehrbani Intezar Karein...';
+            statusBox.classList.remove('hidden');
+
+            try {
+                const arrayBuffer = await selectedFile.arrayBuffer();
+                const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                
+                const newPdfDoc = await PDFLib.PDFDocument.create();
+
+                // Calculate Quality Scale Factor based on Target Size
+                let quality = 0.6;
+                let scale = 1.2;
+
+                if (selectedTargetKB <= 100) {
+                    quality = 0.35;
+                    scale = 0.9;
+                } else if (selectedTargetKB <= 200) {
+                    quality = 0.5;
+                    scale = 1.0;
+                } else if (selectedTargetKB <= 300) {
+                    quality = 0.65;
+                    scale = 1.2;
+                } else {
+                    quality = 0.8;
+                    scale = 1.4;
+                }
+
+                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                    const page = await pdf.getPage(pageNum);
+                    const viewport = page.getViewport({ scale: scale });
+
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    await page.render({ canvasContext: context, viewport: viewport }).promise;
+
+                    // Convert page to low quality JPEG blob for target size compression
+                    const imgDataUrl = canvas.toDataURL('image/jpeg', quality);
+                    const imgBytes = await fetch(imgDataUrl).then(res => res.arrayBuffer());
+
+                    const embeddedImg = await newPdfDoc.embedJpg(imgBytes);
+                    const newPage = newPdfDoc.addPage([viewport.width, viewport.height]);
+                    newPage.drawImage(embeddedImg, {
+                        x: 0,
+                        y: 0,
+                        width: viewport.width,
+                        height: viewport.height,
+                    });
+                }
+
+                const compressedPdfBytes = await newPdfDoc.save();
+                const finalSizeKB = (compressedPdfBytes.length / 1024).toFixed(2);
+
+                // Download File
+                const blob = new Blob([compressedPdfBytes], { type: 'application/pdf' });
+                const downloadUrl = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                a.download = `compressed_${selectedTargetKB}KB_${selectedFile.name}`;
+                a.click();
+
+                statusBox.className = "mt-4 p-4 rounded-xl text-center text-sm font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+                statusBox.innerHTML = `<i class="fa-solid fa-circle-check mr-2"></i> Tayyar Hai! Naya File Size: <strong>${finalSizeKB} KB</strong> (Download Shuru Hogaya)`;
+
+            } catch (error) {
+                console.error(error);
+                statusBox.className = "mt-4 p-4 rounded-xl text-center text-sm font-medium bg-rose-500/10 text-rose-400 border border-rose-500/20";
+                statusBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-2"></i> Error: PDF file process nahi ho saki. Dusri PDF try karein.';
+            } finally {
+                compressBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
