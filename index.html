@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compress to 100KB - Free & Secure PDF Tools Suite</title>
-    <meta name="description" content="Free online PDF tools. Compress PDF to 100KB exact target size, merge, split, convert PDF to image and images to PDF securely in browser.">
+    <meta name="description" content="Free online PDF tools. Compress PDF to 100KB exact target size via cloud service, merge, split, convert PDF to image and images to PDF securely.">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- PDF-Lib & PDF.js Libraries -->
@@ -51,7 +51,7 @@
                 </div>
                 <div>
                     <span class="text-xl sm:text-2xl font-extrabold tracking-tight">Compress <span class="gradient-text">to 100KB</span></span>
-                    <span class="block text-[10px] font-semibold text-slate-400 tracking-wider uppercase -mt-1">Free Document Tools</span>
+                    <span class="block text-[10px] font-semibold text-slate-400 tracking-wider uppercase -mt-1">Cloud Powered Suite</span>
                 </div>
             </div>
 
@@ -67,7 +67,7 @@
             <div class="flex items-center gap-2">
                 <span class="text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-full flex items-center gap-1.5">
                     <i class="fa-solid fa-shield-halved text-emerald-400"></i>
-                    <span class="hidden sm:inline">100% Secure</span>
+                    <span class="hidden sm:inline">100% Cloud Secure</span>
                 </span>
             </div>
         </div>
@@ -86,10 +86,10 @@
         <!-- Hero Title -->
         <div class="text-center mb-8">
             <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">
-                Free Online PDF & Document <span class="gradient-text">Toolkit</span>
+                Free Online PDF & Document <span class="gradient-text">Cloud Toolkit</span>
             </h1>
             <p class="text-slate-400 text-sm sm:text-base max-w-xl mx-auto">
-                University Admissions, Jobs & Official Forms ke liye exact 100KB tak PDF compress karein aur sabhi tools muft istemal karein.
+                University Admissions, Jobs & Official Forms ke liye exact 100KB tak PDF compress karein bina size badhaye.
             </p>
         </div>
 
@@ -118,8 +118,8 @@
             <!-- 1. COMPRESS SECTION -->
             <div id="section-compress" class="tool-section">
                 <div class="text-center mb-6">
-                    <h2 class="text-xl font-bold text-slate-200">Compress PDF to 100KB / Target Size</h2>
-                    <p class="text-xs text-slate-400 mt-1">Exact target size select karein aur bina size barhaye fast compress karein.</p>
+                    <h2 class="text-xl font-bold text-slate-200">Cloud Target PDF Compressor</h2>
+                    <p class="text-xs text-slate-400 mt-1">Exact target size select karein aur cloud server ke zariye 100% guaranteed size reduce karein.</p>
                 </div>
 
                 <!-- Dropzone -->
@@ -151,8 +151,8 @@
                     </div>
                 </div>
 
-                <button id="compressBtn" onclick="processCompress()" disabled class="w-full mt-6 gradient-btn disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3.5 rounded-xl shadow-lg shadow-indigo-500/20 flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-bolt"></i> Compress PDF Safely Now
+                <button id="compressBtn" onclick="processCloudCompress()" disabled class="w-full mt-6 gradient-btn disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3.5 rounded-xl shadow-lg shadow-indigo-500/20 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-bolt"></i> Compress PDF via Cloud Now
                 </button>
             </div>
 
@@ -251,7 +251,7 @@
     <div id="privacyModal" class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 text-slate-300 text-xs leading-relaxed max-h-[80vh] overflow-y-auto">
             <h3 class="text-base font-bold text-white mb-2">Privacy Policy</h3>
-            <p class="mb-2">Your files are processed safely inside your browser. We respect user privacy and adhere to secure web standards.</p>
+            <p class="mb-2">Your files are processed securely through cloud APIs and deleted instantly after processing. We respect user privacy and adhere to secure web standards.</p>
             <button onclick="closeModal('privacyModal')" class="mt-4 bg-indigo-600 text-white font-bold px-4 py-2 rounded-xl">Close</button>
         </div>
     </div>
@@ -259,7 +259,7 @@
     <div id="termsModal" class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 text-slate-300 text-xs leading-relaxed max-h-[80vh] overflow-y-auto">
             <h3 class="text-base font-bold text-white mb-2">Terms of Service</h3>
-            <p class="mb-2">By using this service, you agree to free document processing utilities without any formal warranties.</p>
+            <p class="mb-2">By using this service, you agree to cloud document processing utilities without any formal warranties.</p>
             <button onclick="closeModal('termsModal')" class="mt-4 bg-indigo-600 text-white font-bold px-4 py-2 rounded-xl">Close</button>
         </div>
     </div>
@@ -277,5 +277,4 @@
         function switchTool(tool) {
             document.querySelectorAll('.tool-section').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.tool-tab').forEach(el => {
-                el.classList.remove('bg-indigo-600', 'text-white', 'shadow-indigo-600/30');
-                el.classList.add('bg-slate-800',
+                el.classList.remove('bg-indigo-600', 'text-white', 'shadow-indi
