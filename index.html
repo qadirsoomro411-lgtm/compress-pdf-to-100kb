@@ -1,339 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="google-site-verification" content="QqzcB9KJE79iS_WD_T9i5Ftoh34d4jRlcflKWVPHSFU" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compress PDF to 100kb - Professional PDF Compressor</title>
-    <meta name="description" content="100% Guaranteed: Compress 1MB, 2MB, 3MB, 5MB, or 10MB PDF files down to 100KB, 200KB, 300KB, 500KB, or 1MB instantly.">
-
-    <!-- Fixed Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Fixed PDF Libraries -->
-    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-
-    <style>
-        :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #1e293b;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--bg); color: var(--text); padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        header { text-align: center; margin-bottom: 20px; max-width: 800px; width: 100%; }
-        header h1 { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-style: italic; color: #1e3a8a; margin-bottom: 8px; }
-        header p { color: #64748b; font-size: 1rem; font-weight: 500; }
-       .ads-space { width: 100%; max-width: 728px; height: 90px; background: #f1f5f9; margin: 15px 0; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #94a3b8; border: 1px dashed #cbd5e1; border-radius: 8px; }
-       .container { width: 100%; max-width: 700px; background: var(--card-bg); padding: 25px; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
-       .guarantee-notice { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 14px 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.92rem; color: #166534; font-weight: 600; text-align: center; line-height: 1.4; }
-
-        /* Tool Tabs */
-       .tool-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }
-       .tab-btn { background: white; border: 1px solid #cbd5e1; padding: 10px 14px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.85rem; color: #475569; }
-       .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
-
-       .tool-section { display: none; }
-       .tool-section.active { display: block; }
-
-       .drop-zone { border: 2px dashed #cbd5e1; border-radius: 12px; padding: 35px 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; background: #f8fafc; }
-       .drop-zone.drag-over { border-color: var(--primary); background: #eff6ff; }
-       .drop-zone p { font-size: 1.2rem; font-weight: 600; color: #475569; }
-       .drop-zone span { display: block; font-size: 0.9rem; color: #94a3b8; margin-top: 8px; }
-        input[type=file] { display: none; }
-       .file-info-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; margin-top: 20px; display: none; flex-direction: column; align-items: center; width: 100%; gap: 10px; }
-       .file-name { font-weight: 600; color: #2563eb; word-break: break-all; font-size: 0.95rem; margin-bottom: 5px; text-align: center; }
-       .remove-btn { background: #ef4444; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; width: 100%; text-align: center; }
-       .options-section { margin-top: 20px; }
-       .options-section h3 { font-size: 1.05rem; margin-bottom: 12px; color: #334155; font-weight: 600; }
-       .size-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 10px; }
-       .size-btn { background: white; border: 1px solid #cbd5e1; padding: 12px 5px; border-radius: 8px; cursor: pointer; text-align: center; font-weight: 600; color: #475569; font-size: 0.9rem; }
-       .size-btn.selected { background: var(--primary); border-color: var(--primary); color: white; }
-       .action-box { margin-top: 25px; text-align: center; }
-       .compress-btn { background: var(--primary); color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; }
-       .compress-btn:disabled { background: #94a3b8; cursor: not-allowed; }
-       .status-message { margin-top: 15px; font-size: 0.95rem; text-align: center; font-weight: 500; white-space: pre-line; }
-       .download-link { display: none; margin-top: 15px; background: #10b981; color: white; text-decoration: none; width: 100%; padding: 14px; border-radius: 8px; font-size: 1.1rem; font-weight: 600; text-align: center; }
-       .info-content { width: 100%; max-width: 700px; margin-top: 35px; background: white; padding: 25px; border-radius: 12px; text-align: left; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-        footer { margin-top: auto; padding: 30px 20px; font-size: 0.85rem; color: #64748b; text-align: center; width: 100%; }
-        footer a { color: var(--primary); text-decoration: none; margin: 0 10px; font-weight: 500; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compress PDF to 100KB - Free Private Tools</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;font-family:system-ui}
+body{margin:0;background:#f6f8ff}
+.container{max-width:760px;margin:0 auto;padding:16px}
+h1{text-align:center;color:#2b4c9b;font-style:italic;font-size:32px}
+.subtitle{text-align:center;color:#555;font-size:14px;margin-bottom:18px}
+.card{background:#fff;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:18px}
+.green-box{background:#f0faf0;border:1px solid #c6e8c6;border-radius:12px;padding:12px;text-align:center;color:#276727;font-size:13px;margin-bottom:16px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:16px}
+.tab{padding:8px 14px;border-radius:20px;border:1px solid #dbe4ff;background:#fff;cursor:pointer;font-weight:600}
+.tab.active{background:#2f5bff;color:#fff}
+.drop{border:2px dashed #b7c6ff;background:#f8faff;border-radius:14px;padding:26px;text-align:center;cursor:pointer}
+.sizes{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.size{flex:1 1 90px;padding:9px;border:1px solid #ddd;border-radius:10px;text-align:center;cursor:pointer;background:#fff;font-weight:600}
+.size.active{background:#2f5bff;color:#fff}
+.btn{width:100%;margin-top:16px;padding:13px;background:#2f5bff;color:#fff;border:0;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer}
+.progress{height:8px;background:#e5e9ff;border-radius:10px;margin-top:12px;display:none}
+.bar{height:100%;width:0;background:#2f5bff;transition:.3s}
+#status{text-align:center;margin-top:10px;font-size:13px}
+.footer{text-align:center;margin-top:24px;font-size:12px;color:#777}
+</style>
 </head>
 <body>
-
-    <header>
-        <h1>Compress PDF to 100kb</h1>
-        <p>100% Private Client-Side Tools for University Students & Job Seekers</p>
-    </header>
-
-    <div class="ads-space">Google AdSense Responsive Ad Banner (Top)</div>
-
-    <div class="container">
-        <div class="guarantee-notice">
-            100% Guaranteed: Compress 1MB, 2MB, 3MB, 5MB, or 10MB PDF files down to 100KB, 200KB, 300KB, 500KB, or 1MB perfectly.
-        </div>
-
-        <!-- Tool Tabs -->
-        <div class="tool-tabs">
-            <button class="tab-btn active" data-tool="compress">Compress PDF</button>
-            <button class="tab-btn" data-tool="merge">Merge PDF</button>
-            <button class="tab-btn" data-tool="jpg2pdf">JPG to PDF</button>
-            <button class="tab-btn" data-tool="pdf2jpg">PDF to JPG</button>
-        </div>
-
-        <!-- 1. COMPRESS PDF SECTION -->
-        <div class="tool-section active" id="section-compress">
-            <div class="drop-zone" id="drop-zone-compress">
-                <p>Drag & Drop your PDF here</p>
-                <span>or click to browse files</span>
-                <input type="file" id="file-input-compress" accept="application/pdf">
-            </div>
-            <div class="file-info-box" id="file-info-compress">
-                <span class="file-name" id="display-name-compress"></span>
-                <button class="remove-btn" onclick="removeFile('compress')">Remove File</button>
-            </div>
-            <div class="options-section">
-                <h3>Select Target Max Size:</h3>
-                <div class="size-grid">
-                    <button class="size-btn selected" data-size="100">100 KB</button>
-                    <button class="size-btn" data-size="200">200 KB</button>
-                    <button class="size-btn" data-size="300">300 KB</button>
-                    <button class="size-btn" data-size="500">500 KB</button>
-                    <button class="size-btn" data-size="1000">1 MB</button>
-                </div>
-            </div>
-            <div class="action-box">
-                <button class="compress-btn" id="compress-btn">Compress PDF Now</button>
-                <div class="status-message" id="status-compress"></div>
-                <a href="#" class="download-link" id="download-compress">Download Compressed PDF</a>
-            </div>
-        </div>
-
-        <!-- 2. MERGE PDF SECTION -->
-        <div class="tool-section" id="section-merge">
-            <div class="drop-zone" id="drop-zone-merge">
-                <p>Drag & Drop PDFs here (Multiple)</p>
-                <span>or click to browse - Select 2+ PDFs</span>
-                <input type="file" id="file-input-merge" accept="application/pdf" multiple>
-            </div>
-            <div class="file-info-box" id="file-info-merge">
-                <span class="file-name" id="display-name-merge"></span>
-                <button class="remove-btn" onclick="removeFile('merge')">Remove Files</button>
-            </div>
-            <div class="action-box">
-                <button class="compress-btn" id="merge-btn">Merge PDFs Now</button>
-                <div class="status-message" id="status-merge"></div>
-                <a href="#" class="download-link" id="download-merge">Download Merged PDF</a>
-            </div>
-        </div>
-
-        <!-- 3. JPG TO PDF SECTION -->
-        <div class="tool-section" id="section-jpg2pdf">
-            <div class="drop-zone" id="drop-zone-jpg2pdf">
-                <p>Drag & Drop JPG Images here</p>
-                <span>or click to browse - Multiple JPG allowed</span>
-                <input type="file" id="file-input-jpg2pdf" accept="image/jpeg,image/jpg,image/png" multiple>
-            </div>
-            <div class="file-info-box" id="file-info-jpg2pdf">
-                <span class="file-name" id="display-name-jpg2pdf"></span>
-                <button class="remove-btn" onclick="removeFile('jpg2pdf')">Remove Images</button>
-            </div>
-            <div class="action-box">
-                <button class="compress-btn" id="jpg2pdf-btn">Convert JPG to PDF</button>
-                <div class="status-message" id="status-jpg2pdf"></div>
-                <a href="#" class="download-link" id="download-jpg2pdf">Download PDF</a>
-            </div>
-        </div>
-
-        <!-- 4. PDF TO JPG SECTION -->
-        <div class="tool-section" id="section-pdf2jpg">
-            <div class="drop-zone" id="drop-zone-pdf2jpg">
-                <p>Drag & Drop PDF here</p>
-                <span>or click to browse - PDF to JPG</span>
-                <input type="file" id="file-input-pdf2jpg" accept="application/pdf">
-            </div>
-            <div class="file-info-box" id="file-info-pdf2jpg">
-                <span class="file-name" id="display-name-pdf2jpg"></span>
-                <button class="remove-btn" onclick="removeFile('pdf2jpg')">Remove File</button>
-            </div>
-            <div class="action-box">
-                <button class="compress-btn" id="pdf2jpg-btn">Convert PDF to JPG</button>
-                <div class="status-message" id="status-pdf2jpg"></div>
-                <a href="#" class="download-link" id="download-pdf2jpg">Download JPG Images (ZIP)</a>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="ads-space" style="margin-top: 25px;">Google AdSense Responsive Ad Banner (Bottom)</div>
-
-    </div>
+<div class="container">
+<h1>Compress PDF to 100kb</h1>
+<div class="subtitle">100% Private - All processing in your browser</div>
+<div class="card">
+<div class="green-box">Easily compress PDF files from 1MB, 2MB, 3MB, 5MB or 10MB down to 100KB, 200KB, 300KB, 500KB or 1MB. Files never leave your device.</div>
+<div class="tabs">
+<button class="tab active" data-mode="compress">Compress PDF</button>
+<button class="tab" data-mode="merge">Merge PDF</button>
+<button class="tab" data-mode="jpg2pdf">JPG to PDF</button>
+<button class="tab" data-mode="pdf2jpg">PDF to JPG</button>
 </div>
-<footer style="text-align:center;padding:25px;margin-top:40px;border-top:1px solid #ddd;background:#f9f9f9;">
-<div>
-<a href="about.html" style="margin:0 10px;color:#2563eb;text-decoration:none;">About</a> |<a href="how-to-compress.html" style="margin:0 10px;color:#2563eb;text-decoration:none">How to Compress</a>
-<a href="privacy.html" style="margin:0 10px;color:#2563eb;text-decoration:none;">Privacy</a> |
-<a href="contact.html" style="margin:0 10px;color:#2563eb;text-decoration:none;">Contact</a> |
-<a href="terms.html" style="margin:0 10px;color:#2563eb;text-decoration:none;">Terms</a>
+<div class="drop" id="drop"><b>Drag & Drop your PDF here</b><br><small>or click to browse</small><input type="file" id="file" hidden accept=".pdf,.jpg,.png" multiple></div>
+<div id="sizeBox"><div style="font-weight:700;margin-top:14px;font-size:13px">Select Target Max Size:</div><div class="sizes"><div class="size active" data-kb="100">100 KB</div><div class="size" data-kb="200">200 KB</div><div class="size" data-kb="300">300 KB</div><div class="size" data-kb="500">500 KB</div><div class="size" data-kb="1024">1 MB</div></div></div>
+<button class="btn" id="actionBtn">Compress PDF Now</button>
+<div class="progress" id="prog"><div class="bar" id="bar"></div></div>
+<div id="status"></div><div id="preview" style="text-align:center;margin-top:12px"></div>
 </div>
-<p style="margin-top:15px;color:#666;font-size:14px;">© 2026 Compress PDF to 100KB. 100% Private.</p>
-</footer>
+<div class="footer">© 2026 Compress PDF to 100KB. 100% Private.</div>
+</div>
 <script>
-        
-
-    <script>
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-        let selectedSize = 100;
-        let filesStore = { compress: null, merge: [], jpg2pdf: [], pdf2jpg: null };
-
-        // Tab Switching
-        document.querySelectorAll('.tab-btn').forEach(btn=>{
-            btn.addEventListener('click', ()=>{
-                document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-                document.querySelectorAll('.tool-section').forEach(s=>s.classList.remove('active'));
-                btn.classList.add('active');
-                document.getElementById('section-'+btn.dataset.tool).classList.add('active');
-            });
-        });
-
-        // Size selection
-        document.querySelectorAll('.size-btn').forEach(b=>{
-            b.addEventListener('click', ()=>{
-                document.querySelectorAll('.size-btn').forEach(x=>x.classList.remove('selected'));
-                b.classList.add('selected');
-                selectedSize = parseInt(b.dataset.size);
-            });
-        });
-
-        function setupDrop(zoneId, inputId, type, multiple=false){
-            const zone = document.getElementById(zoneId);
-            const input = document.getElementById(inputId);
-            zone.addEventListener('click', ()=>input.click());
-            zone.addEventListener('dragover', e=>{ e.preventDefault(); zone.classList.add('drag-over'); });
-            zone.addEventListener('dragleave', ()=>zone.classList.remove('drag-over'));
-            zone.addEventListener('drop', e=>{
-                e.preventDefault(); zone.classList.remove('drag-over');
-                handleFiles(e.dataTransfer.files, type, multiple);
-            });
-            input.addEventListener('change', ()=>handleFiles(input.files, type, multiple));
-        }
-        setupDrop('drop-zone-compress','file-input-compress','compress',false);
-        setupDrop('drop-zone-merge','file-input-merge','merge',true);
-        setupDrop('drop-zone-jpg2pdf','file-input-jpg2pdf','jpg2pdf',true);
-        setupDrop('drop-zone-pdf2jpg','file-input-pdf2jpg','pdf2jpg',false);
-
-        function handleFiles(fileList, type, multiple){
-            if(!fileList.length) return;
-            const infoBox = document.getElementById('file-info-'+type);
-            const nameEl = document.getElementById('display-name-'+type);
-            if(multiple){
-                filesStore[type] = Array.from(fileList);
-                nameEl.textContent = filesStore[type].map(f=>f.name).join(', ');
-            } else {
-                filesStore[type] = fileList[0];
-                nameEl.textContent = filesStore[type].name + ' (' + (filesStore[type].size/1024).toFixed(1) + ' KB)';
-            }
-            infoBox.style.display = 'flex';
-        }
-        function removeFile(type){
-            filesStore[type] = type==='merge' || type==='jpg2pdf'? [] : null;
-            document.getElementById('file-info-'+type).style.display='none';
-            document.getElementById('display-name-'+type).textContent='';
-        }
-
-        // 1. COMPRESS (Basic client-side re-save)
-        document.getElementById('compress-btn').addEventListener('click', async ()=>{
-            if(!filesStore.compress){ alert('Please select PDF'); return; }
-            const status = document.getElementById('status-compress');
-            const btn = document.getElementById('compress-btn');
-            btn.disabled=true; status.textContent='Compressing to '+selectedSize+'KB... Please wait';
-            try{
-                const buf = await filesStore.compress.arrayBuffer();
-                const pdfDoc = await PDFLib.PDFDocument.load(buf);
-                const pdfBytes = await pdfDoc.save({ useObjectStreams: false });
-                const blob = new Blob([pdfBytes], {type:'application/pdf'});
-                const url = URL.createObjectURL(blob);
-                const dl = document.getElementById('download-compress');
-                dl.href=url; dl.download='compressed_'+selectedSize+'KB_'+filesStore.compress.name;
-                dl.style.display='block';
-                status.textContent='Compressed! Original: '+(filesStore.compress.size/1024).toFixed(0)+'KB | New: '+(blob.size/1024).toFixed(0)+'KB';
-            }catch(e){ status.textContent='Error: '+e.message; }
-            btn.disabled=false;
-        });
-
-        // 2. MERGE
-        document.getElementById('merge-btn').addEventListener('click', async ()=>{
-            if(filesStore.merge.length<2){ alert('Select at least 2 PDFs'); return; }
-            const status=document.getElementById('status-merge');
-            status.textContent='Merging...';
-            try{
-                const merged = await PDFLib.PDFDocument.create();
-                for(let f of filesStore.merge){
-                    const buf=await f.arrayBuffer();
-                    const doc=await PDFLib.PDFDocument.load(buf);
-                    const pages=await merged.copyPages(doc, doc.getPageIndices());
-                    pages.forEach(p=>merged.addPage(p));
-                }
-                const bytes=await merged.save();
-                const blob=new Blob([bytes],{type:'application/pdf'});
-                const url=URL.createObjectURL(blob);
-                const dl=document.getElementById('download-merge');
-                dl.href=url; dl.download='merged.pdf'; dl.style.display='block';
-                status.textContent='Merged '+filesStore.merge.length+' PDFs successfully!';
-            }catch(e){ status.textContent='Error: '+e.message; }
-        });
-
-        // 3. JPG TO PDF
-        document.getElementById('jpg2pdf-btn').addEventListener('click', async ()=>{
-            if(!filesStore.jpg2pdf.length){ alert('Select JPG images'); return; }
-            const status=document.getElementById('status-jpg2pdf');
-            status.textContent='Converting...';
-            try{
-                const pdfDoc=await PDFLib.PDFDocument.create();
-                for(let f of filesStore.jpg2pdf){
-                    const buf=await f.arrayBuffer();
-                    let img;
-                    if(f.type==='image/png') img=await pdfDoc.embedPng(buf);
-                    else img=await pdfDoc.embedJpg(buf);
-                    const page=pdfDoc.addPage([img.width, img.height]);
-                    page.drawImage(img,{x:0,y:0,width:img.width,height:img.height});
-                }
-                const bytes=await pdfDoc.save();
-                const blob=new Blob([bytes],{type:'application/pdf'});
-                const url=URL.createObjectURL(blob);
-                const dl=document.getElementById('download-jpg2pdf');
-                dl.href=url; dl.download='converted_from_jpg.pdf'; dl.style.display='block';
-                status.textContent='Converted '+filesStore.jpg2pdf.length+' images to PDF!';
-            }catch(e){ status.textContent='Error: '+e.message; }
-        });
-
-        // 4. PDF TO JPG (first page as JPG)
-        document.getElementById('pdf2jpg-btn').addEventListener('click', async ()=>{
-            if(!filesStore.pdf2jpg){ alert('Select PDF'); return; }
-            const status=document.getElementById('status-pdf2jpg');
-            status.textContent='Converting PDF to JPG...';
-            try{
-                const buf=await filesStore.pdf2jpg.arrayBuffer();
-                const pdf=await pdfjsLib.getDocument({data:buf}).promise;
-                const page=await pdf.getPage(1);
-                const viewport=page.getViewport({scale:2});
-                const canvas=document.createElement('canvas');
-                canvas.width=viewport.width; canvas.height=viewport.height;
-                const ctx=canvas.getContext('2d');
-                await page.render({canvasContext:ctx, viewport}).promise;
-                canvas.toBlob(blob=>{
-                    const url=URL.createObjectURL(blob);
-                    const dl=document.getElementById('download-pdf2jpg');
-                    dl.href=url; dl.download='page1.jpg'; dl.style.display='block';
-                    status.textContent='PDF converted to JPG! (Page 1). For full pages, repeat process.';
-                },'image/jpeg',0.9);
-            }catch(e){ status.textContent='Error: '+e.message; }
-        });
-    </script>
+pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+const {PDFDocument}=PDFLib;let mode='compress';let targetKB=100;let files=[];
+document.querySelectorAll('.tab').forEach(t=>{t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');mode=t.dataset.mode;document.getElementById('sizeBox').style.display=mode==='compress'?'block':'none';const m={compress:'Compress PDF Now',merge:'Merge PDFs Now',jpg2pdf:'Convert JPG to PDF',pdf2jpg:'Convert PDF to JPG'};document.getElementById('actionBtn').innerText=m[mode];}});
+document.querySelectorAll('.size').forEach(s=>{s.onclick=()=>{document.querySelectorAll('.size').forEach(x=>x.classList.remove('active'));s.classList.add('active');targetKB=parseInt(s.dataset.kb);}});
+const drop=document.getElementById('drop');const fileInput=document.getElementById('file');
+drop.onclick=()=>fileInput.click();drop.ondragover=e=>{e.preventDefault();};drop.ondrop=e=>{e.preventDefault();handleFiles(e.dataTransfer.files);};
+fileInput.onchange=e=>handleFiles(e.target.files);
+function handleFiles(fl){files=[...fl];document.getElementById('status').innerText=files.length+' file(s) selected';}
+function showProgress(p,t){document.getElementById('prog').style.display='block';document.getElementById('bar').style.width=p+'%';if(t)document.getElementById('status').innerText=t;}
+async function compressToTarget(){
+ if(!files.length)return alert('Pehle PDF select karo!');
+ const file=files[0];showProgress(10,'PDF load ho rahi hai...');const arrayBuffer=await file.arrayBuffer();
+ const pdf=await pdfjsLib.getDocument({data:arrayBuffer}).promise;const numPages=pdf.numPages;let quality=0.8;let scale=1.0;
+ for(let attempt=0;attempt<7;attempt++){
+  showProgress(20+attempt*10,`Compress ho raha hai... Koshish ${attempt+1}`);
+  const {jsPDF}=window.jspdf;const outPdf=new jsPDF();let first=true;
+  for(let i=1;i<=numPages;i++){
+   const page=await pdf.getPage(i);const viewport=page.getViewport({scale:scale});const canvas=document.createElement('canvas');canvas.width=viewport.width;canvas.height=viewport.height;
+   await page.render({canvasContext:canvas.getContext('2d'),viewport}).promise;
+   const imgData=canvas.toDataURL('image/jpeg',quality);const imgProps=outPdf.getImageProperties(imgData);const pdfW=outPdf.internal.pageSize.getWidth();const pdfH=(imgProps.height*pdfW)/imgProps.width;
+   if(!first)outPdf.addPage();outPdf.addImage(imgData,'JPEG',0,0,pdfW,pdfH);first=false;
+  }
+  const blob=outPdf.output('blob');const kb=blob.size/1024;
+  if(kb<=targetKB||attempt===6){
+   showProgress(100,`Ho gaya! Final size: ${kb.toFixed(1)} KB`);
+   const url=URL.createObjectURL(blob);document.getElementById('preview').innerHTML=`<a href="${url}" download="compressed-${targetKB}kb.pdf" style="display:inline-block;margin-top:10px;padding:10px 18px;background:#0ab344;color:#fff;border-radius:10px;text-decoration:none;font-weight:700">Download ${kb.toFixed(1)} KB PDF</a>`;
+   return;
+  }
+  if(quality>0.2)quality-=0.15;else scale-=0.15;if(scale<0.4)scale=0.4;
+ }
+}
+async function mergePdfs(){
+ if(files.length<2)return alert('2 PDFs select karo!');showProgress(20,'Merge ho raha hai...');const merged=await PDFDocument.create();
+ for(let f of files){const buf=await f.arrayBuffer();const pdf=await PDFDocument.load(buf);const pages=await merged.copyPages(pdf,pdf.getPageIndices());pages.forEach(p=>merged.addPage(p));}
+ const bytes=await merged.save();const blob=new Blob([bytes],{type:'application/pdf'});const url=URL.createObjectURL(blob);
+ document.getElementById('preview').innerHTML=`<a href="${url}" download="merged.pdf" style="padding:10px 18px;background:#0ab344;color:#fff;border-radius:10px;text-decoration:none;font-weight:700">Download Merged PDF</a>`;showProgress(100,'Merge ho gaya!');
+}
+async function jpgToPdf(){
+ if(!files.length)return alert('JPG select karo!');showProgress(20,'JPG to PDF...');const {jsPDF}=window.jspdf;const out=new jsPDF();let first=true;
+ for(let f of files){const dataUrl=await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(f)});const props=out.getImageProperties(dataUrl);const pdfW=out.internal.pageSize.getWidth();const pdfH=(props.height*pdfW)/props.width;if(!first)out.addPage();out.addImage(dataUrl,'JPEG',0,0,pdfW,pdfH);first=false;}
+ const blob=out.output('blob');const url=URL.createObjectURL(blob);document.getElementById('preview').innerHTML=`<a href="${url}" download="jpg-to-pdf.pdf" style="padding:10px 18px;background:#0ab344;color:#fff;border-radius:10px;text-decoration:none">Download PDF</a>`;showProgress(100,'Ho gaya!');
+}
+async function pdfToJpg(){
+ if(!files.length)return alert('PDF select karo!');showProgress(10,'PDF se JPG...');const buf=await files[0].arrayBuffer();const pdf=await pdfjsLib.getDocument({data:buf}).promise;document.getElementById('preview').innerHTML='';
+ for(let i=1;i<=pdf.numPages;i++){const page=await pdf.getPage(i);const viewport=page.getViewport({scale:2});const canvas=document.createElement('canvas');canvas.width=viewport.width;canvas.height=viewport.height;await page.render({canvasContext:canvas.getContext('2d'),viewport}).promise;const url=canvas.toDataURL('image/jpeg',0.9);const a=document.createElement('a');a.href=url;a.download=`page-${i}.jpg`;a.innerText=`Download Page ${i} JPG`;a.style.display='block';a.style.margin='8px';a.style.color='#2f5bff';document.getElementById('preview').appendChild(a);showProgress(Math.round(i/pdf.numPages*100),`Page ${i}/${pdf.numPages}`);}
+}
+document.getElementById('actionBtn').onclick=()=>{if(mode==='compress')compressToTarget();else if(mode==='merge')mergePdfs();else if(mode==='jpg2pdf')jpgToPdf();else if(mode==='pdf2jpg')pdfToJpg();};
+</script>
 </body>
 </html>
