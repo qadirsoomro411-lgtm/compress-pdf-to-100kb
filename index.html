@@ -1,13 +1,14 @@
+
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Compress PDF to 100KB, 200KB, 300KB or 500KB Online Free | CPB</title>
-<meta name="description" content="Free online PDF compressor. Reduce a PDF to 100KB, 200KB, 300KB, 500KB or any size you choose. Works in your browser, files are never uploaded.">
+<meta name="description" content="Free online PDF compressor. Reduce a PDF to 100KB, 200KB, 300KB, 500KB or any size you choose. No sign-up, no watermark, files deleted right after compression.">
 <meta name="theme-color" content="#C8F135">
 <!--
-  SETUP NOTES (delete this comment before going live if you like)
+  SETUP NOTES (you can delete this comment before going live)
   1. After Google AdSense approves your site, paste the AdSense <script> snippet right before </head>.
   2. Put each ad unit's <ins class="adsbygoogle"> code inside the <div class="ad"> blocks below (there are 2).
   3. Add <link rel="canonical" href="https://YOUR-DOMAIN/"> once you know your final domain.
@@ -17,9 +18,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Unbounded:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Is my PDF uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. Compression runs inside your browser, so your file stays on your device."}},
-{"@type":"Question","name":"Can it compress a PDF to exactly 100KB?","acceptedAnswer":{"@type":"Answer","text":"It aims for the size you pick and gets under it whenever the file can be made that small. Very long documents may not fit under 100KB and the tool will tell you the smallest size it reached."}},
-{"@type":"Question","name":"Can I still select the text after compressing?","acceptedAnswer":{"@type":"Answer","text":"No. To reach small sizes, each page is saved as an image, so text is no longer selectable."}}]}
+{"@type":"Question","name":"Is my PDF stored on your server?","acceptedAnswer":{"@type":"Answer","text":"No. Your file is sent over an encrypted connection, compressed, and removed from our server as soon as the result is ready."}},
+{"@type":"Question","name":"Can it compress a PDF to 100KB?","acceptedAnswer":{"@type":"Answer","text":"Yes in most cases. CPB aims for the size you pick and gets under it whenever the file can be made that small. Very long documents may not fit, and the tool will tell you the smallest size it reached."}},
+{"@type":"Question","name":"Can I still select the text after compressing?","acceptedAnswer":{"@type":"Answer","text":"Usually yes. CPB shrinks the images and keeps text as text. Only if you allow it, and the size cannot be reached any other way, pages are saved as images."}}]}
 </script>
 <style>
 :root{--ink:#101418;--ground:#F3F5F0;--lime:#C8F135;--limedark:#6B8A00;--card:#fff;--line:#DDE3D6;--mute:#4A5560;--soft:#E4EBDD}
@@ -30,7 +31,6 @@ a{color:inherit;text-decoration:none}
 a:hover{opacity:.8}
 .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
 h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;margin:0}
-/* header */
 header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding-top:18px;padding-bottom:18px}
 .logo{display:flex;align-items:center;gap:10px}
 .logo-mark{width:40px;height:40px;border-radius:12px;background:var(--lime);display:flex;align-items:center;justify-content:center}
@@ -38,16 +38,14 @@ header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:spac
 .logo-name b{color:var(--limedark)}
 .logo-sub{display:block;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;color:var(--mute);letter-spacing:.3px;margin-top:3px}
 nav{display:flex;flex-wrap:wrap;gap:22px;font-weight:500;font-size:15px}
-/* hero */
 .hero{display:flex;flex-wrap:wrap;gap:44px;align-items:center;padding-top:24px;padding-bottom:40px}
 .hero-text{flex:1 1 420px;min-width:0}
 .pill{display:inline-flex;align-items:center;gap:8px;background:var(--soft);border-radius:999px;padding:8px 16px;font-size:14px;font-weight:700;margin-bottom:20px}
 h1{font-weight:800;font-size:clamp(38px,6vw,64px);line-height:1.04;letter-spacing:-2px}
 .lead{font-size:19px;color:var(--mute);max-width:520px;margin:18px 0 0}
 .ticks{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:20px;font-size:15px;font-weight:500;color:var(--mute)}
-/* tool card */
 .tool{flex:1 1 460px;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:28px;padding:22px}
-.drop{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;border:2.5px dashed #B7C2AB;border-radius:20px;padding:34px 18px;background:#FAFBF8;cursor:pointer;transition:background .15s,border-color .15s}
+.drop{position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;border:2.5px dashed #B7C2AB;border-radius:20px;padding:34px 18px;background:#FAFBF8;cursor:pointer;transition:background .15s,border-color .15s}
 .drop.over{background:#F1F9D6;border-color:var(--limedark)}
 .drop:focus-within{outline:3px solid var(--ink);outline-offset:2px}
 .drop-icon{width:62px;height:62px;border-radius:19px;background:var(--ink);color:var(--lime);display:flex;align-items:center;justify-content:center}
@@ -65,16 +63,17 @@ h1{font-weight:800;font-size:clamp(38px,6vw,64px);line-height:1.04;letter-spacin
 .custom{display:none;align-items:center;gap:10px;margin-top:12px}
 .custom.show{display:flex}
 .custom input{width:130px;font:inherit;font-weight:700;font-size:17px;padding:11px 14px;border:2px solid var(--ink);border-radius:12px;background:#fff}
-.opt{display:flex;align-items:center;gap:10px;margin:18px 0 18px;font-size:15px;font-weight:500;cursor:pointer}
-.opt input{width:20px;height:20px;accent-color:var(--ink)}
-/* file list */
+.opts{margin:18px 0}
+.opt{display:flex;align-items:flex-start;gap:10px;margin:0 0 12px;font-size:15px;font-weight:500;cursor:pointer;line-height:1.35}
+.opt input{width:20px;height:20px;flex:none;margin:0;accent-color:var(--ink)}
+.opt small{display:block;color:#6B7680;font-weight:400;font-size:13px;margin-top:2px}
 .list{display:flex;flex-direction:column;gap:12px;margin-top:18px}
 .item{border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:#FAFBF8}
 .item-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .item-name{font-weight:700;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 .item-size{font-size:13px;color:#6B7680;white-space:nowrap}
 .bar{height:8px;border-radius:999px;background:var(--soft);margin-top:10px;overflow:hidden}
-.bar i{display:block;height:100%;width:0;background:var(--limedark);border-radius:999px;transition:width .2s}
+.bar i{display:block;height:100%;width:0;background:var(--limedark);border-radius:999px;transition:width .3s}
 .msg{font-size:14px;color:var(--mute);margin-top:8px}
 .msg.err{color:#B3261E;font-weight:500}
 .result{margin-top:10px;background:var(--ink);color:#fff;border-radius:14px;padding:14px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
@@ -83,7 +82,6 @@ h1{font-weight:800;font-size:clamp(38px,6vw,64px);line-height:1.04;letter-spacin
 .result .save{background:var(--lime);color:var(--ink);font-weight:700;font-size:13px;padding:5px 10px;border-radius:999px}
 .result a.dl{margin-left:auto;background:var(--lime);color:var(--ink);font-weight:700;padding:11px 18px;border-radius:12px}
 .warn{margin-top:8px;font-size:14px;color:#8A5A00;font-weight:500}
-/* sections */
 .ad{max-width:728px;margin:0 auto 40px;min-height:0}
 section{padding:36px 0}
 h2{font-weight:800;font-size:clamp(30px,4.5vw,42px);letter-spacing:-1.2px;margin-bottom:22px}
@@ -135,10 +133,10 @@ footer nav{gap:20px}
 <main>
 <div class="wrap hero">
 <div class="hero-text">
-<div class="pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Files never leave your device</div>
+<div class="pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Files deleted right after compression</div>
 <h1>Compress PDF to 100KB. Keep it readable.</h1>
 <p class="lead">Pick 100KB, 200KB, 300KB or 500KB, or type your own size. Free, no sign-up, no watermark, and it works on your phone.</p>
-<div class="ticks"><span>✓ No sign-up</span><span>✓ No watermark</span><span>✓ Private</span></div>
+<div class="ticks"><span>✓ No sign-up</span><span>✓ No watermark</span><span>✓ Text stays selectable</span></div>
 </div>
 
 <div class="tool" id="tool">
@@ -163,7 +161,10 @@ footer nav{gap:20px}
 <span style="font-weight:700">KB</span>
 </div>
 
-<label class="opt"><input type="checkbox" id="gray"> Black and white (makes the file smaller)</label>
+<div class="opts">
+<label class="opt"><input type="checkbox" id="gray"><span>Black and white<small>Makes the file smaller.</small></span></label>
+<label class="opt"><input type="checkbox" id="img" checked><span>Allow saving pages as images if needed<small>Only used when the size cannot be reached any other way. Text is then not selectable.</small></span></label>
+</div>
 
 <button type="button" class="btn lime big" id="go" disabled>Compress PDF</button>
 <div class="list" id="list" aria-live="polite"></div>
@@ -178,7 +179,7 @@ footer nav{gap:20px}
 <div class="wrap" style="padding-top:44px;padding-bottom:48px">
 <h2>Three steps, a few seconds</h2>
 <div class="steps">
-<div class="step"><b>01</b><h3>Add your PDF</h3><p>Drop it in or tap to browse. It opens inside your browser, not on a server.</p></div>
+<div class="step"><b>01</b><h3>Add your PDF</h3><p>Drop it in or tap to browse. It is sent over an encrypted connection.</p></div>
 <div class="step"><b>02</b><h3>Pick the size</h3><p>Choose 100, 200, 300 or 500 KB, or type the exact size an upload form asks for.</p></div>
 <div class="step"><b>03</b><h3>Download</h3><p>See the before and after size, then save your smaller PDF.</p></div>
 </div>
@@ -190,8 +191,8 @@ footer nav{gap:20px}
 <h2>Why people use CPB</h2>
 <div class="cards">
 <div class="card"><h3>Hits your size limit</h3><p>Job portals, scholarship forms and exam sites often cap uploads at 100 KB or 200 KB. Set that number and go.</p></div>
-<div class="card"><h3>Private by design</h3><p>Your PDF is processed on your own device. Nothing is sent to our servers.</p></div>
-<div class="card"><h3>Batch friendly</h3><p>Add several files and compress them one after another.</p></div>
+<div class="card"><h3>Text stays text</h3><p>CPB shrinks the images inside your PDF first, so the words can still be selected and searched.</p></div>
+<div class="card"><h3>Deleted right after</h3><p>Your file is removed from our server as soon as your compressed copy is ready.</p></div>
 <div class="card"><h3>Black and white mode</h3><p>Turn colour off for scans and documents to save even more space.</p></div>
 </div>
 </div>
@@ -200,9 +201,9 @@ footer nav{gap:20px}
 <section>
 <div class="wrap prose">
 <h2>How the compression works</h2>
-<p>To reach small sizes such as 100 KB, CPB turns each page into a compressed image and rebuilds the PDF from those images. It picks the best quality that still fits your size, page by page.</p>
-<p>Because of this, text in the new file can no longer be selected or searched. If you need to keep selectable text, use the original file for that purpose and the compressed copy for uploading.</p>
-<p>Long documents and high-resolution scans may not fit under a very small size. In that case the tool tells you the smallest size it could reach, so you can pick a larger target.</p>
+<p>CPB first shrinks and re-compresses the pictures inside your PDF and keeps your text as real text. It picks the best quality that still fits the size you chose.</p>
+<p>If that is not enough to reach a very small size such as 100 KB, and you have allowed it, CPB saves each page as a compressed image and rebuilds the PDF. The file gets much smaller, but the text can no longer be selected.</p>
+<p>Very long documents and high-resolution scans may not fit under a tiny size. In that case the tool tells you the smallest size it could reach, so you can pick a larger target.</p>
 </div>
 </section>
 
@@ -214,11 +215,12 @@ footer nav{gap:20px}
 <div class="wrap">
 <h2>Questions people ask</h2>
 <div class="faq">
-<details><summary>Is my PDF uploaded to a server?</summary><p>No. Compression runs inside your browser, so your file stays on your device.</p></details>
-<details><summary>Can it compress a PDF to exactly 100KB?</summary><p>It aims for the size you pick and gets under it whenever the file can be made that small. Very long documents may not fit under 100 KB, and the tool will show the smallest size it reached.</p></details>
-<details><summary>Will the text still look sharp?</summary><p>Larger targets such as 300 or 500 KB keep text clearer. Smaller targets trade some sharpness for size.</p></details>
-<details><summary>Can I select the text after compressing?</summary><p>No. Each page is saved as an image to reach small sizes, so text is no longer selectable.</p></details>
+<details><summary>Is my PDF stored on your server?</summary><p>No. Your file is sent over an encrypted connection, compressed, and removed from our server as soon as the result is ready.</p></details>
+<details><summary>Can it compress a PDF to 100KB?</summary><p>Yes in most cases. CPB aims for the size you pick and gets under it whenever the file can be made that small. Very long documents may not fit, and the tool will show the smallest size it reached.</p></details>
+<details><summary>Will the text still look sharp?</summary><p>Text stays sharp when it can be kept as text. Pictures lose some detail at small sizes. Larger targets such as 300 or 500 KB keep pictures clearer.</p></details>
+<details><summary>Can I select the text after compressing?</summary><p>Usually yes. Only if you allow it, and the size cannot be reached any other way, pages are saved as images and text is no longer selectable.</p></details>
 <details><summary>Do I need an account?</summary><p>No sign-up and no watermark. Open the page and start.</p></details>
+<details><summary>Is there a file size limit?</summary><p>Yes. To keep the service fast for everyone, very large files and very long documents are not accepted. The tool tells you if a file is over the limit.</p></details>
 <details><summary>Can it open password-protected PDFs?</summary><p>No. Remove the password first, then compress the file.</p></details>
 </div>
 </div>
@@ -240,20 +242,21 @@ footer nav{gap:20px}
 
 <noscript><p style="padding:20px;text-align:center">Please turn on JavaScript to use this tool.</p></noscript>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script>
+/* Leave empty when this page and the server run together (recommended).
+   If the page is hosted somewhere else, put the server address here, e.g. 'https://your-app.onrender.com' */
+window.CPB_API = '';
+</script>
 <script>
 (function () {
   'use strict';
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  if (window.pdfjsLib) {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-  }
-
+  var API = (window.CPB_API || '').replace(/\/$/, '');
   var $ = function (s) { return document.querySelector(s); };
   var drop = $('#drop'), input = $('#file'), list = $('#list'), goBtn = $('#go');
-  var chips = $('#chips'), customWrap = $('#customWrap'), customIn = $('#custom'), grayBox = $('#gray');
+  var chips = $('#chips'), customWrap = $('#customWrap'), customIn = $('#custom');
+  var grayBox = $('#gray'), imgBox = $('#img');
 
   var state = { kb: 100, items: [], busy: false, nextId: 1 };
 
@@ -262,15 +265,14 @@ footer nav{gap:20px}
     if (b < 1048576) return (b / 1024).toFixed(b < 10240 ? 1 : 0) + ' KB';
     return (b / 1048576).toFixed(2) + ' MB';
   }
-  function targetBytes() {
+  function targetKB() {
     var kb = state.kb;
     if (kb === 'custom') kb = parseFloat(customIn.value);
     if (!kb || kb < 20) kb = 20;
     if (kb > 20000) kb = 20000;
-    return Math.round(kb * 1024);
+    return kb;
   }
 
-  /* ---------- target size chips ---------- */
   chips.addEventListener('click', function (e) {
     var b = e.target.closest('.chip');
     if (!b) return;
@@ -283,12 +285,11 @@ footer nav{gap:20px}
     if (v === 'custom') customIn.focus();
   });
 
-  /* ---------- adding files ---------- */
   function addFiles(fileList) {
     Array.prototype.forEach.call(fileList, function (f) {
       var isPdf = f.type === 'application/pdf' || /\.pdf$/i.test(f.name);
       if (!isPdf) return;
-      state.items.push({ id: state.nextId++, file: f, status: 'ready', pct: 0, msg: '', url: null, out: 0, ok: false, usedKB: null });
+      state.items.push({ id: state.nextId++, file: f, status: 'ready', pct: 0, msg: '', url: null, out: 0, ok: false });
     });
     render();
   }
@@ -301,7 +302,6 @@ footer nav{gap:20px}
   });
   drop.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files); });
 
-  /* ---------- list rendering ---------- */
   function el(tag, cls, text) {
     var n = document.createElement(tag);
     if (cls) n.className = cls;
@@ -328,8 +328,9 @@ footer nav{gap:20px}
         var r = el('div', 'result');
         r.appendChild(el('span', 'old', fmt(it.file.size)));
         r.appendChild(el('span', 'new', fmt(it.out)));
-        var saved = Math.max(0, Math.round((1 - it.out / it.file.size) * 100));
-        if (it.out < it.file.size) r.appendChild(el('span', 'save', '−' + saved + '%'));
+        if (it.out < it.file.size) {
+          r.appendChild(el('span', 'save', '−' + Math.max(0, Math.round((1 - it.out / it.file.size) * 100)) + '%'));
+        }
         var a = el('a', 'dl', 'Download');
         a.href = it.url;
         a.download = it.file.name.replace(/\.pdf$/i, '') + '-compressed.pdf';
@@ -345,6 +346,116 @@ footer nav{gap:20px}
     goBtn.disabled = state.busy || !pending;
   }
 
-  /* ---------- compression engine ---------- */
-  function canvasToBytes(canvas, q) {
-    return new Promise(function (resol
+  function setProgress(it, pct, msg) {
+    it.pct = pct; it.msg = msg;
+    var node = document.getElementById('item' + it.id);
+    if (!node) return;
+    var bar = node.querySelector('.bar i'); if (bar) bar.style.width = pct + '%';
+    var m = node.querySelector('.msg'); if (m) m.textContent = msg;
+  }
+
+  function sendToServer(it, kb, gray, allowImages) {
+    return new Promise(function (resolve, reject) {
+      var fd = new FormData();
+      fd.append('file', it.file, it.file.name);
+      fd.append('target_kb', String(kb));
+      fd.append('gray', gray ? '1' : '0');
+      fd.append('allow_images', allowImages ? '1' : '0');
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', API + '/api/compress');
+      xhr.responseType = 'blob';
+      xhr.timeout = 180000;
+      xhr.upload.onprogress = function (e) {
+        if (e.lengthComputable) {
+          var p = Math.round((e.loaded / e.total) * 100);
+          setProgress(it, Math.round(p * 0.4), 'Uploading ' + p + '%');
+        }
+      };
+      xhr.upload.onload = function () {
+        setProgress(it, 55, 'Compressing... big files can take up to a minute');
+      };
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          resolve({
+            blob: xhr.response,
+            mode: xhr.getResponseHeader('X-Mode'),
+            met: xhr.getResponseHeader('X-Target-Met') === '1'
+          });
+          return;
+        }
+        var fallback = 'Something went wrong. Please try again.';
+        if (!xhr.response) { reject(new Error(fallback)); return; }
+        var rd = new FileReader();
+        rd.onload = function () {
+          var m = fallback;
+          try { m = JSON.parse(rd.result).error || fallback; } catch (e) { /* ignore */ }
+          reject(new Error(m));
+        };
+        rd.onerror = function () { reject(new Error(fallback)); };
+        rd.readAsText(xhr.response);
+      };
+      xhr.onerror = function () {
+        reject(new Error('Could not reach the server. Check your internet connection. If the site was idle, the server may be waking up: wait a minute and try again.'));
+      };
+      xhr.ontimeout = function () {
+        reject(new Error('The server took too long to answer. Try a larger target size or a smaller file.'));
+      };
+      xhr.send(fd);
+    });
+  }
+
+  async function runAll() {
+    if (state.busy) return;
+    state.busy = true;
+    var kb = targetKB();
+    var target = Math.round(kb * 1024);
+    var label = fmt(target);
+    var gray = grayBox.checked, allowImages = imgBox.checked;
+
+    for (var idx = 0; idx < state.items.length; idx++) {
+      var it = state.items[idx];
+      if (it.status === 'done' || it.status === 'working') continue;
+      if (it.url) { URL.revokeObjectURL(it.url); it.url = null; }
+
+      if (it.file.size <= target) {
+        it.status = 'done'; it.ok = true; it.out = it.file.size;
+        it.url = URL.createObjectURL(it.file);
+        it.msg = 'This file is already under ' + label + '. No compression needed.';
+        render();
+        continue;
+      }
+      it.status = 'working'; it.pct = 0; it.msg = 'Starting...';
+      render();
+      try {
+        var res = await sendToServer(it, kb, gray, allowImages);
+        it.out = res.blob.size;
+        it.url = URL.createObjectURL(res.blob);
+        it.ok = res.met;
+        it.status = 'done';
+        var note = res.mode === 'image' ? ' Pages were saved as images, so text is not selectable.' : ' The original text and layout were kept.';
+        if (res.met) {
+          it.msg = 'Done. Your file is under ' + label + '.' + note;
+        } else {
+          it.msg = 'This is the smallest size we could reach (' + fmt(it.out) + '). Try a larger target' +
+            (allowImages ? '' : ', allow saving pages as images') + ' or turn on black and white.';
+        }
+        if (it.out >= it.file.size) {
+          it.msg = 'The compressed copy is not smaller than the original. Keep your original file or try black and white.';
+          it.ok = false;
+        }
+      } catch (err) {
+        it.status = 'error';
+        it.msg = err && err.message ? err.message : 'Something went wrong. Please try again.';
+      }
+      render();
+    }
+    state.busy = false;
+    render();
+  }
+  goBtn.addEventListener('click', runAll);
+  render();
+})();
+</script>
+</body>
+</html>
